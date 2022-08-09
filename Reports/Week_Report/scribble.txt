@@ -1,0 +1,283 @@
+===============================================================
+
+소프트웨어 융합 캡스톤디자인 - 주제 찾아보기
+5점만점
+
+1. generative model <- signal을 만들어내는 모델
+3
+
+2. GAN
+입력 > 출력, 무질서, 필요한것 추출
+3, 4, 5
+포즈, 상태.. 갈수
+
+3. 구현을 우선으로 할것인가, 원리를 우선으로 할것인가
+3.5
+
+4. 5~6개 관심있는 분야 <- 유튜브 검색
+
+5. ICCV, CVPR (deep learning, computer vision 관련)
+제목, 그림만보기
+
+6. CVF(openaccess.thecvf)
+
+7. 생각해본 주제
+GAN 이미지 재구성
+
+super resolution(업 스케일링)
+
+동물(개, 고양이) 포즈(상태) 추정
+
+이미지 노이즈 제거
+
+TransFill: Reference-Guided Image Inpainting by Merging Multiple Color and Spatial Transformations
+이미지 인페인팅은 대상 이미지에서 제거해야 하는 구멍 영역 내에서 누락된 픽셀을 그럴듯하게 복원하는 작업입니다
+
+Iterative Filter Adaptive Network for Single Image Defocus Deblurring(디 포커스 디블러링)
+포스텍
+
+* 주제선정 간단히 발표
+-이미지 분류
+단순히 이미지를 식별하고 분류하는 것을 생각해봤습니다.
+
+-동물 특히 개, 고양이의 포즈 또는 상태를 추정하는것
+ai허브에 반려동물 구분을 위한 동물 영상 데이터 존재
+동물행동에 대한 질병유무, 행동이상유무, 감정상태분류
+(3D 포인트 클라우드들의 시퀀스로 연속하여 피팅(fit)되는 스켈레톤 모델의 노드들의 3D 위치 좌표들의 변위들의 컴퓨터 계산에 의해 이동하는 물체(moving object)의 포즈 추정을 위한 방법으로서,... ) 포즈 추정은 포인트 클라우드라는 개념이 들어가나 보다
+
+- Deep Learning on Image Denoising
+영상처리 분야에서 중요한 부분이며 가장 많이 쓰이게 되는 부분중 하나로 이미지 노이즈 제거를 뽑을 수 있겠다. 이미 opencv에 이미지 노이즈를 제거하는 많은 알고리즘들과 함수들이 존재한다.
+
+- Neural Style Transfer
+ 딥러닝을 사용하여 원하는 이미지를 다른 스타일의 이미지로 구성하는 법을 배워보겠습니다(피카소나 반 고흐의 그림 기풍으로 변환).
+이것도 여러 알고리즘이 이미 존재하
+
+
+마지막으로 감정에 따른 얼굴 표정 분류( perception, 영화 분류)
+
+
+
+교수님 말씀
+1.이미지는 신호(자연에는 수많은 신호가 존재 한다. 이미지는 그중에 빛을 측정)
+600 x 400 의 이미지를 넣으면 뭐가 나올까? -> 토끼다 햄스터 or 확률 즉 정보
+필요한 정보만 뽑아 낸다.
+점수3
+
+2.
+perception(인지) 기초적인 테스크 - 이미지 분류, 정보 추출, 피쳐 추출
+
+분류 classification
+
+detection
+
+segmentation(세분화)
+
+포즈 에스티메이션(pose estimation)
+
+3 포즈, 갈수록 어려움
+
+분류 -> detection -> pose estimation -> 행동분류
+갈수록 어려워짐
+
+3.
+그림을 넣어서 그림이 나온다.( 정보가 아니라)
+영상처리, 이미지 프로세싱(좀 올드한 느낌) low level computer vision
+행동분류은 high level computer vision
+카메라 노이즈는 생길수 밖에 없음.
+어두울때 잡음이 많이 낌.(잡음은 언제나 있음, 하지만 어두울때 민감함)
+잡음은 언제나 같음
+이미지 디 노이징
+
+3.5
+
+4.
+많이함.
+Style Transfer 구현은 쉽지만 이해는 어려움
+
+구현 2 이해 5
+
+5
+low level
+디 노이징과 비슷하지만 물리적으로 다름
+차원축소는 쉽지만 차원 확장은 어렵다
+
+generative model -> 이미지로부터 정보 추출이 아니고 정보로부터 이미지를 만든다.
+오토 인코더
+denerative administraive(GAN, 경쟁)
+
+구현 4 이해 10
+
+바이큐빅 인터폴레이션
+
+6. Image inpainting 
+
+
+
+7. deblurring
+(포커스가 맞지 않으면, 찍으면 흔들리면)
+흐린 원인은 매우 많다. 원인을 모르면 디 블러링이 어려움
+
+8. super resolution
+
+딥 뉴럴
+클레시피케이션
+papers with code
+awosome super resolution
+구현 해보고 아키텍쳐에 대해 공부,
+실제 찍은 것에 대해 해보기
+적용을 해야한다( 가치 창출)
+마케팅을 하라. 수퍼레졸루션을 어떻게 쓸 것인가?
+예) 용의자 찾기.
+
+
+10. 구체화 하기( 어떤 어플리케이션을 만들것인가?)
+1가지 pick
+
+
+===============================================================
+
+
+1. x-ray
+dicom 의료 데이터 포멧 (ai 허브)
+classification
+
+tool 파이썬 gui 
+영상 입력 
+모델 돌리고
+판별
+
+2. 피쳐 익스트렉션 할필요 없음.
+
+3. 데이터셋 찾기
+
+4. 공개데이터셋
+
+5.
+분류- 정상, 결핵, 폐결핵
+
+6. 
+일정
+4월 선행조사- 데이터셋, 분류모델 찾기, 
+데이터셋 특성(
+
+5월 - 구현
+6월 - 평가, GUI(알고리즘이 있으면 덮기)
+
+찍는데
+
+7.
+다음까진 데이터셋 찾기
+
+8.
+https://paperswithcode.com/task/lung-disease-classification/codeless
+
+데이터셋 3-4개 찾기, 특징, 장단점 생각
+부족하지 않은 데이터셋 선정
+데이터가 크면 큰 네트워크
+데이터가 작으면 작은 네트워크
+미지수 찾기
+
+
+===============================================================
+
+
+딥러닝
+캐글
+공부해야할 것!
+데이터셋이 불균형하다. 임밸런스 극복!
+-> 데이터셋을 늘려줄것
+하지만 이것은 좋은 방법이 아니다.
+해결하는 방법은 많다. 
+불균형한 데이터셋에 맞게 최선의 성능을 내는것이 좋음.
+나중에 데이터를 늘려서 성능이 향상이 되는것?
+
+폐결핵 진단 알고리즘을 공부하는 용도
+
+데이터 셋 다운. 건들이지 말것.
+
+2D CNN model for classificaiton
+2d 신경망. 2d cnn. 신경망 classification.
+알고리즘들. les-net, vgg, 구글넷. 공부해볼것. 2주 공부해볼것.알고리즘만
+네트워크(4-5월 공부 하는것이 좋음)이 뭔가?
+mnist
+cifar10
+imagenet
+VGG
+ResNet
+GoogleNet
+Inception
+DenseNet
+MobileNet
+
+===============================================================
+
+
+데이터 셋 다운. 건들이지 말것.
+
+2D CNN model for classificaiton
+2d 신경망. 2d cnn. 신경망 classification.
+알고리즘들. les-net, vgg, 구글넷. 공부해볼것. 2주 공부해볼것.알고리즘만
+네트워크(4-5월 공부 하는것이 좋음)이 뭔가?
+
+<데이터셋>
+mnist
+** cifar10 + resnet(or densenet) 90%
+-> 후에 폐사진
+
+imagenet
+
+<알고리즘>
+VGG
+**ResNet-18(**), 150
+평균 풀링(크기가 안맞아도 됌)
+
+**GoogleNet
+Inception
+**DenseNet
+MobileNet
+**EfficientNet
+
+Torch Conv2d
+
+DenseNet
+
+CNN Keras image classification
+
+TransferLearning
+
+Image Classification with Chest X-ray
+
+EfficientNet
+
+
+5월 4일
+이미지의 크기가 제각각임, 변환이 필요할듯
+
+val을 train에 붙여도 됌
+70퍼센트 이상
+오류없이
+성능올리기
+
+중간발표
+장점? - 주제(경험)
+
+1. 데이터셋 확보
+2. 분류, 알고리즘 공부, 다른 데이터셋으로 분류 해봄.
+
+
+1. 산업계에서는 딥러닝을 잘 안씀. 함수 설계. 
+
+2. model 베이스.(딥러닝의 반대)
+
+3. 시리(음성 데이터)
+
+domain adaptation
+
+
+데이터 증강 필요?
+
+
+
+채널 수 확인
+rgb를 그레이로
+
