@@ -1,4 +1,4 @@
-# 딥러닝 기반 흉부 X-Ray 폐질환 분류 (Capstone design 2020-2)
+# 딥러닝 기반 흉부 X-Ray 폐질환 분류 (Capstone Design 2022-1)
 * 소프트웨어융합학과 이인석
 
 ## 1. 과제 개요
