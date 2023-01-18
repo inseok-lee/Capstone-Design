@@ -50,6 +50,48 @@ Python, Colab, Pytorch
 
 이미지 데이터 수집 → 훈련데이터와 테스트데이터 분할 → CNN 모델로 학습 → 모델 성능 측정 → 성능 향상을 위해 Data Augmentation 기법 적용 → 모델 학습 → 모델 성능 측정 → 모델별 성능 비교
 
+### 다. 과제 수행 방법
+2. 과제 수행방법
+가)	Chest X-Ray(흉부 엑스레이) 데이터셋
+1)	데이터 수집
+ 
+Kaggle에서 Chest X-Ray 데이터셋을 수집했다. 이 데이터 셋은 Pneumonia(폐렴), Covid-19(코로나19), Tuberculosis(결핵), Normal(정상) 4가지 질병명으로 진단된 흉부 X-Ray 이미지이다. 3개의 폴더(train, test, validationl)로 구성되며 각 이미지 레이블(Normal/Pneumonia/Covid-19/Tuberculosis)에 대한 하위 폴더를 포함한다. 총 7,135장의 이미지가 있으며 데이터를 살펴보면 코로나19, 폐결핵 데이터에 비해 폐렴 데이터가 압도적으로 많은것을 알 수 있습니다.
+
+Class	Name	Count
+0	COVID19	576
+1	NORMAL	1,583
+2	PNEUMONIA	4,273
+3	TURBERCULOSIS	703
+총 계	7,135![데이터수](https://user-images.githubusercontent.com/92963189/213143608-89e4ed34-1487-4149-9098-370eaee7f591.png)
+
+
+2)	데이터 전처리
+프로젝트에서는 validation데이터를 train데이터로 옮겨주고 8:2의 train, test 데이터셋으로 나누어 주었다. 대부분 고해상도 크기가 서로 다른 이미지를 224x224크기로 Resize하고, 0~255범위의 픽셀 값을 정규화를 통해 0~1 범위로 만들어 주었다.
+
+3)	데이터 증강
+모델 성능 향상을 위해 RandomHorizontalFlip, RandomRotation, RandomCrop기법을 추가하여 데이터 증강을 한 후 학습을 진행해보았다. 왼쪽은 augmentation 기법을 적용하기전, 오른쪽은 적용한 후의 이미지이다.
+ 
+나)	Model Architecture
+1)	5-Layer CNN
+합성곱(nn.Conv2d) + 활성화 함수(nn.ReLU) + 맥스풀링(nn.MaxPoold2d)을 하나의 합성곱 층으로 보고 이렇게 이루어진 3개의 convolutional layer와 2개의 Fully-connected layer로 이루어져 있다. 학습파라미터는 다음과 같다.(learning_rate = 0.001, training_epochs =30, batch_size = 32)
+
+2)	ResNet-18
+ 
+ResNet-18은 18개의 층으로 이루어진 ResNet이다. 이 ResNet은 Residual Block 단위로 이루어져 있고 18개의 층은 크게 5개의 Block과 fully connected layer로 나뉜다. 이 블럭의 개수에 따라 Resnet-18, resnet-34, resnet-50, resnet-101등이 존재한다.
+ResNet 연구팀은 층이 깊어질수록 성능이 좋아진다는 사실을 심층적으로 연구한 결과 layer가 너무 깊어져도 성능이 떨어지는 현상을 발견했다. 아래는 층 깊이에 따른 일반 모델과 ResNet 모델의 성능을 비교한 그래프이다. 왼쪽 그래프를 보면 34-layer의 plain 모델보다 18-layer의 모델이 더 성능이 좋다는 사실을 확인할 수 있다.
+ 
+그 이유는 Layer가 깊어질수록 미분을 점점 많이 하게 되고, 미분 값이 작아져 weight의 영향이 미비해지는 Vanishing Gradient 이 발생하여 training data로 학습이 되지 않는 문제가 발생한다고 한다. 이를 해결한 방법이 기울기가 잘 전파될 수 있도록 일종의 숏 컷(skip connection)을 만들어 주는 것이다.
+ 
+일반적인 구조와는 다르게 Residual block은 아이덴티티 매핑을 통해 입력 x가 어떤 함수를 통과하더라도 다시 x 형태로 출력되도록 해준다. 이렇게 전방의 인풋 값을 출력층까지 가져가기 때문에 층이 깊어져도 Vanishing gradient 문제를 해결할 수 있다. 따라서 ResNet 모델은 신경망의 깊이가 깊어질수록 성능이 좋다는 것을 알 수 있다. 하지만 학습하고자 하는 폐질환 데이터 셋의 크기, 오버 피팅 문제를 고려하여 가장 작은 크기의 네트워크인 ResNet18모델을 사용하기로 결정하였다.
+
+다. 모델 성능 평가 지표
+1) Confusion Matrix: 예측 값이 실제 값을 얼마나 정확히 예측했는지 보여주는 행렬
+2) Accuracy: 전체 중에 정답을 맞춘 비율
+3) Precision: Positive 로 예측한 것 중에서 실제 Positive 의 비율
+4) Recall: 실제 Positive 인 것 중에서 Positive 로 예측한 비율
+5) F-1 Score: Precision 과 Recall 의 조화 평균 (* Imbalanced Data 인 경우)
+
+
 ## Schedule
 | Contents | March | April |  May  | June  |   Progress   |
 |----------|-------|-------|-------|-------|--------------|
